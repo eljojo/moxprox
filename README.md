@@ -2,6 +2,8 @@
 
 A very simple Ruby client to [Proxmox](https://www.proxmox.com/en/)'s api.
 
+This gem is under active development. Suggestions [are always welcome](https://github.com/eljojo/moxprox/issues/new).
+
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -16,7 +18,24 @@ And then execute:
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+require 'logger'
+require 'moxprox'
+
+cluster = Moxprox.new(
+  host: 'my-proxmox-cluster.com',
+  username: 'login@pve', # can also be 'root@pam'
+  password: 'peanut_butter_and_j3lly',
+  logger: Logger.new(STDOUT)
+)
+node = proxmox.node("homer")
+machine = node.machine(101)
+machine.status # :stopped
+machine.start
+machine.status # :running
+sleep 10
+machine.shutdown
+```
 
 ## Development
 
